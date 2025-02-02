@@ -11,18 +11,18 @@ import seatBookingRouter from "./routers/seat-booking.router";
 const app = express();
 app.use(express.json());
 app.use(cors())
-// app.use(cors({
-//     credentials:true,
-//     origin:["http://localhost:4200"]
-// }));
+app.use(cors({
+    credentials:true,
+    origin:["http://localhost:4200"]
+}));
 
 app.use("/api/users", userRouter);
 app.use("/api/", seatBookingRouter);
 
-// app.use(express.static('public'));
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname,'public', 'index.html'))
-// })
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname,'public', 'index.html'))
+})
 
 // sequelize.sync().then(()=>{
     const port = process.env.PORT || 5000;
