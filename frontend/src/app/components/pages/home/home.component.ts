@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SeatService} from "../../../services/seat.service";
 import {Seat} from "../../../shared/models/Seat";
 import {UserService} from "../../../services/user.service";
@@ -12,20 +12,32 @@ export class HomeComponent implements OnInit {
 
   seats: Seat[] = [];
   selectedSeat: any;
+  currentUser: any;
+  users: any = []
+  selectedUserId: any;
+
   constructor(private seatService: SeatService, private userService: UserService) {
   }
 
   ngOnInit(): void {
-
+    this.currentUser = this.userService.currentUser;
+    if (this.currentUser.isAdmin) {
+      this.userService.getAllUsers()
+        .subscribe(res => {
+          this.users = res;
+          console.log(this.users)
+        });
+    }
     this.loadSeats()
   }
 
-  loadSeats():void{
+  loadSeats(): void {
     this.seatService.getAllSeats()
-      .subscribe(res=> {
+      .subscribe(res => {
         this.seats = res;
       })
   }
+
   toggleBooking(chair: any) {
     if (chair.isAvailable) {
       this.selectedSeat = chair.id;
@@ -36,13 +48,18 @@ export class HomeComponent implements OnInit {
   }
 
   bookSeat() {
-    let currentUser = this.userService.currentUser;
-
     this.seatService.bookSeat(
-      {studentId: currentUser.id, seatId: this.selectedSeat, isAdvancedBooking: false})
-      .subscribe(res=>{
+      {
+        studentId: this.currentUser.isAdmin ? this.selectedUserId : this.currentUser.id,
+        seatId: this.selectedSeat,
+        isAdvancedBooking: false
+      })
+      .subscribe(res => {
         this.loadSeats();
       })
+  }
 
+  selectUser(user: any) {
+    this.selectedUserId = user.target.value;
   }
 }

@@ -23,7 +23,7 @@ export class SeatService {
             )
           },
           error: (errorResponse) => {
-            this.toastrService.error(errorResponse.error, 'Seat fetch Failed');
+            this.toastrService.error(errorResponse.error?.error, 'Seat fetch Failed');
           }
         })
       );

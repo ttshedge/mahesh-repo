@@ -6,12 +6,21 @@
       <span *ngIf="!chair.isAvailable">{{ chair.seatNumber }}</span>
       <span *ngIf="chair.isAvailable && selectedSeat !== chair.id">{{ chair.seatNumber }}</span>
       <span *ngIf="chair.isAvailable && selectedSeat === chair.id">{{ chair.seatNumber }}</span>
+      <span *ngIf="currentUser?.isAdmin">{{ chair?.user?.name ? ('. &nbsp;' + chair?.user?.name) : '' }}</span>
     </div>
   </div>
   <br><br>
   <div class="row">
-    <div class="col-12 text-center">
-    <button (click)="bookSeat()" [disabled]="!selectedSeat" class="btn btn-success btn-lg">Book</button>
+    <div class="col-6 float-end">
+      <select (change)="selectUser($event)">
+        <option value="default">Select Student</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{user.name}}
+        </option>
+      </select>
+    </div>
+    <div class="col-6">
+    <button (click)="bookSeat()" [disabled]="!selectedSeat || (currentUser.isAdmin && (selectedUserId === null || selectedUserId ===undefined || selectedUserId === 'default'))" class="btn btn-success btn-lg">Book</button>
     </div>
   </div>
 </div>

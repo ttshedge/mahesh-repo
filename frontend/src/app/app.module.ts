@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     LoginPageComponent,
     RegisterPageComponent,
     LoginPageComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

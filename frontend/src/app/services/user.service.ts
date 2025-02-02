@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
+import {GET_ALL_SEATS_URL, GET_ALL_USERS_URL, USER_LOGIN_URL, USER_REGISTER_URL} from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { User } from '../shared/models/User';
+import {Seat} from "../shared/models/Seat";
 
 const USER_KEY = 'User';
 @Injectable({
@@ -35,7 +36,7 @@ export class UserService {
           )
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Login Failed');
+          this.toastrService.error(errorResponse.error?.error, 'Login Failed');
         }
       })
     );
@@ -53,7 +54,7 @@ export class UserService {
           )
         },
         error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error,
+          this.toastrService.error(errorResponse.error?.error,
             'Register Failed')
         }
       })
@@ -75,5 +76,22 @@ export class UserService {
     const userJson = localStorage.getItem(USER_KEY);
     if(userJson) return JSON.parse(userJson) as User;
     return new User();
+  }
+
+  getAllUsers():Observable<any> {
+    console.log('get users called')
+    return this.http.get<User>(GET_ALL_USERS_URL).pipe(
+      tap({
+        next: (user) =>{
+          this.toastrService.success(
+            `Successfully fetched all users`,
+            'User List'
+          )
+        },
+        error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error?.error, 'Users fetch Failed');
+        }
+      })
+    );
   }
 }

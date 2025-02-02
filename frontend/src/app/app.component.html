@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<header>
+  <div class="logo">
+    <h1>Diksha Academy</h1>
+  </div>
+  <nav>
+    <a href="home">Table Booking</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a *ngIf="!loggedInUser" class="float-end" routerLink="login">Login</a>
+    <a *ngIf="loggedInUser" class="logout float-end" (click)="logout()">Logout</a>
+  </nav>
+</header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>Diksha Academy &copy; 2025</p>
+  <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+</footer>
