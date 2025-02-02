@@ -50,7 +50,6 @@ router.post('/register', async (req, res) => {
   
     return {
       id: user.id,
-      email: user.email,
       name: user.name,
       address: user.address,
       isAdmin: user.isAdmin,

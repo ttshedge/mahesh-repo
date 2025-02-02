@@ -17,6 +17,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HomeComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,17 @@
-Home page
+<div class="container">
+  <h1 class="text-center">Book Your Table</h1>
+  <br><br>
+  <div class="chair-container">
+    <div *ngFor="let chair of seats;" class="chair" [ngClass]="{ 'booked': !chair.isAvailable, 'selected': chair.isAvailable && selectedSeat === chair.id }" (click)="toggleBooking(chair)">
+      <span *ngIf="!chair.isAvailable">{{ chair.seatNumber }}</span>
+      <span *ngIf="chair.isAvailable && selectedSeat !== chair.id">{{ chair.seatNumber }}</span>
+      <span *ngIf="chair.isAvailable && selectedSeat === chair.id">{{ chair.seatNumber }}</span>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-12 text-center">
+    <button (click)="bookSeat()" [disabled]="!selectedSeat" class="btn btn-success btn-lg">Book</button>
+    </div>
+  </div>
+</div>

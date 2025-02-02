@@ -29,7 +29,6 @@ export class RegisterPageComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
-      address: ['', [Validators.required, Validators.minLength(10)]]
     },{
       validators: PasswordsMatchValidator('password','confirmPassword')
     });
@@ -41,7 +40,7 @@ export class RegisterPageComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  submit(){
+  onSubmit(){
     this.isSubmitted = true;
     if(this.registerForm.invalid) return;
 
@@ -50,8 +49,7 @@ export class RegisterPageComponent implements OnInit {
       name: fv.name,
       email: fv.email,
       password: fv.password,
-      confirmPassword: fv.confirmPassword,
-      address: fv.address
+      confirmPassword: fv.confirmPassword
     };
 
     this.userService.register(user).subscribe(_ => {

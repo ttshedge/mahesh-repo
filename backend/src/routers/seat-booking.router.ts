@@ -17,10 +17,12 @@ const isLastThreeDaysOfMonth = (): boolean => {
 // API to get all available seats
 router.get('/seats', async (req: Request, res: Response) => {
   try {
-    const allSeats = await Seat.findAll();
+    const allSeats = await Seat.findAll({
+      include: [User],
+      order: [['seatNumber', 'ASC']]
+    });
     res.json(allSeats);
   } catch (err) {
-    console.log(err)
     res.status(500).json({ error: 'Failed to fetch seats' });
   }
 });
@@ -29,6 +31,13 @@ router.get('/seats', async (req: Request, res: Response) => {
 router.post('/book', async (req: Request, res: Response) => {
   const { studentId, seatId, isAdvancedBooking }: { studentId: string; seatId: string; isAdvancedBooking: boolean } = req.body;
 
+
+
+  const alreadyReservedSeat = await Seat.findOne({ where: { userId: studentId } });
+
+  if (alreadyReservedSeat) {
+    return res.status(400).json({ error: 'Seat is already reserved' });
+  }
   const seat = await Seat.findOne({ where: { id: seatId } });
 
   if (!seat) {
@@ -54,17 +63,18 @@ router.post('/book', async (req: Request, res: Response) => {
   }
   try {
     // Mark the seat as booked (not available)
-    await seat.update({ isAvailable: false });
+    await seat.update({ isAvailable: false, userId: studentId });
     await Booking.create(
       {
-        studentId,
+        userId: studentId,
         seatId,
-        isAdvancedBooking,
+        isAdvancedBooking
       }
     );
 
     res.status(200).json({ message: 'Seat booked successfully' });
   } catch (err) {
+    console.log(err)
     res.status(500).json({ error: 'Failed to book seat' });
   }
 });

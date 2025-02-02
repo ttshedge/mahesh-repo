@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const sequelize:any = new Sequelize("postgresql://mahesh:Ev9tm4PIM93A9c6GcyXtxTHK8HQsiWVE@dpg-cu0vl9l2ng1s73e40ej0-a.singapore-postgres.render.com/mahesh_db",{
+const sequelize:any = new Sequelize("postgresql://postgres.axghnpixplnmahgchrxt:8sBJ5bEZBU9g5HM0@aws-0-ap-south-1.pooler.supabase.com:6543/postgres",{
   // database: "library", 
   // username: "postgres", 
   // password: "postgres", 

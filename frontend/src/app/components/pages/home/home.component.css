@@ -1,0 +1,29 @@
+.chair-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Create 5 columns */
+  gap: 10px;
+}
+
+.chair {
+  width: 100px;
+  height: 100px;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.chair.booked {
+  background-color: red;
+}
+
+.chair.selected {
+  background-color: #3c3cfc;
+}
+
+.chair:hover {
+  background-color: lightblue;
+}
