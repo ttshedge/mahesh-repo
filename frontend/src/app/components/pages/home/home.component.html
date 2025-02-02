@@ -12,7 +12,7 @@
   <br><br>
   <div class="row">
     <div class="col-6 float-end">
-      <select (change)="selectUser($event)">
+      <select (change)="selectUser($event)" *ngIf="currentUser.isAdmin">
         <option value="default">Select Student</option>
         <option *ngFor="let user of users" [value]="user.id">
           {{user.name}}
