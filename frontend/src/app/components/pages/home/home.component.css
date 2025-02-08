@@ -23,9 +23,6 @@
   .chair-user {
     font-size: xx-small;
   }
-  .booking{
-    margin-bottom: 100px;
-  }
 }
 
 @media only screen and (min-width: 667px) {
@@ -63,5 +60,9 @@
 
 .chair:hover {
   background-color: lightblue;
+}
+
+.booking{
+  margin-bottom: 100px;
 }
 
