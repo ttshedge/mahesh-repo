@@ -13,7 +13,11 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-   this.loggedInUser =this.userService.currentUser;
+   this.userService.userObservable
+   .subscribe(res =>{
+    this.loggedInUser = res;
+    console.log(this.loggedInUser)
+   });
   }
 
 

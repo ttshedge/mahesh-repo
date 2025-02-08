@@ -1,21 +1,53 @@
 
+@media only screen and (max-width: 667px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  .hero p {
+    font-size: 0.6rem;
+  }
+  .hero {
+  padding: 50px 10px; 
+  }
+  .course-card {
+    display: flex;
+    width: 100%;
+  }
+  .testimonial {
+    display: flex;
+    width: 100%;
+  }
+}
 
+@media only screen and (min-width: 667px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+  .hero {
+  padding: 100px 20px;
+  }
+  .course-card {
+    display: inline-block;
+    width: 30%;
+  }
+  .testimonial {
+    display: inline-block;
+    width: 45%;
+  }
+}
 
 /* Hero Section */
 .hero {
-  /*background: url('your-image-url.jpg') no-repeat center center/cover;*/
   color: #fff;
   text-align: center;
-  padding: 100px 20px;
 }
 
-.hero h1 {
-  font-size: 3rem;
-}
 
-.hero p {
-  font-size: 1.2rem;
-}
+
+
 
 .cta-btn-hero {
   background-color: #ff6600;
@@ -46,8 +78,6 @@
 }
 
 .course-card {
-  display: inline-block;
-  width: 30%;
   background-color: #fff;
   padding: 20px;
   margin: 10px;
@@ -82,8 +112,6 @@
 }
 
 .testimonial {
-  display: inline-block;
-  width: 45%;
   margin: 10px;
   background-color: #f7f7f7;
   padding: 20px;
@@ -91,20 +119,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Benefits Section */
-.benefits {
-  background-color: #ff6600;
-  padding: 50px 20px;
-  text-align: center;
-  color: #fff;
-}
-
-.benefits ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.benefits li {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.table {
+  margin-top: 100px;
 }

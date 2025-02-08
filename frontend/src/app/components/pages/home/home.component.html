@@ -2,15 +2,16 @@
   <h1 class="text-center">Book Your Table</h1>
   <br><br>
   <div class="chair-container">
-    <div *ngFor="let chair of seats;" class="chair" [ngClass]="{ 'booked': !chair.isAvailable, 'selected': chair.isAvailable && selectedSeat === chair.id }" (click)="toggleBooking(chair)">
-      <span *ngIf="!chair.isAvailable">{{ chair.seatNumber }}</span>
+    <div *ngFor="let chair of seats;" class="chair" [ngClass]="{ 'booked': !chair.isAvailable, 'selected': chair.isAvailable && selectedSeat === chair.id }" 
+    (click)="toggleBooking(chair)">
+      <span class="chair-user" *ngIf="!chair.isAvailable">{{ chair.seatNumber }}</span>
       <span *ngIf="chair.isAvailable && selectedSeat !== chair.id">{{ chair.seatNumber }}</span>
       <span *ngIf="chair.isAvailable && selectedSeat === chair.id">{{ chair.seatNumber }}</span>
-      <span *ngIf="currentUser?.isAdmin">{{ chair?.user?.name ? ('. &nbsp;' + chair?.user?.name) : '' }}</span>
+      <span class="chair-user" *ngIf="currentUser?.isAdmin">{{ chair?.user?.name ? ('. &nbsp;' + chair?.user?.name) : '' }}</span>
     </div>
   </div>
   <br><br>
-  <div class="row">
+  <div class="row booking">
     <div class="col-6 float-end">
       <select (change)="selectUser($event)" *ngIf="currentUser.isAdmin">
         <option value="default">Select Student</option>
@@ -20,7 +21,8 @@
       </select>
     </div>
     <div class="col-6">
-    <button (click)="bookSeat()" [disabled]="!selectedSeat || (currentUser.isAdmin && (selectedUserId === null || selectedUserId ===undefined || selectedUserId === 'default'))" class="btn btn-success btn-lg">Book</button>
+    <button (click)="bookSeat()" [disabled]="!selectedSeat || (currentUser.isAdmin && (selectedUserId === null 
+    || selectedUserId ===undefined || selectedUserId === 'default'))" class="btn btn-success">Book</button>
     </div>
   </div>
 </div>

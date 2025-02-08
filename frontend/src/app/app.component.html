@@ -4,10 +4,10 @@
   </div>
   <nav>
     <a href="home">Table Booking</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-    <a *ngIf="!loggedInUser" class="float-end" routerLink="login">Login</a>
-    <a *ngIf="loggedInUser" class="logout float-end" (click)="logout()">Logout</a>
+    <a href="#">{{loggedInUser.isAdmin ? 'Dashboard' : 'About'}}</a>
+    <a *ngIf="!loggedInUser.isAdmin" href="#">Contact</a>
+    <a *ngIf="loggedInUser.id === undefined" class="logout float-end" routerLink="login">Login</a>
+    <a *ngIf="loggedInUser.id !== undefined" class="logout float-end" (click)="logout()">Logout</a>
   </nav>
 </header>
 <div class="container">

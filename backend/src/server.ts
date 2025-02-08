@@ -25,7 +25,7 @@ app.get('*', (req, res) => {
 })
 
 // sequelize.sync().then(()=>{
-    const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 5001;
     app.listen(port, () => {
     console.log("Website served on http://localhost:" + port);
 });

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, tap } from 'rxjs';
-import {BOOK_SEAT_URL, GET_ALL_SEATS_URL} from '../shared/constants/urls';
+import {BOOK_SEAT_URL, GET_ALL_SEATS_URL, OPEN_BOOKING_URL} from '../shared/constants/urls';
 import { Seat } from '../shared/models/Seat';
 
 // const USER_KEY = 'User';
@@ -24,6 +24,22 @@ export class SeatService {
           },
           error: (errorResponse) => {
             this.toastrService.error(errorResponse.error?.error, 'Seat fetch Failed');
+          }
+        })
+      );
+    }
+
+    openBooking():Observable<any>{
+      return this.http.get<Seat>(OPEN_BOOKING_URL).pipe(
+        tap({
+          next: (seats) =>{
+            this.toastrService.success(
+              `Successfully opened booking`,
+              'Seat Booking'
+            )
+          },
+          error: (errorResponse) => {
+            this.toastrService.error(errorResponse.error?.error, 'Open Booking Failed');
           }
         })
       );

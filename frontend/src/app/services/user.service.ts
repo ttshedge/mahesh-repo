@@ -6,7 +6,6 @@ import {GET_ALL_SEATS_URL, GET_ALL_USERS_URL, USER_LOGIN_URL, USER_REGISTER_URL}
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { IUserRegister } from '../shared/interfaces/IUserRegister';
 import { User } from '../shared/models/User';
-import {Seat} from "../shared/models/Seat";
 
 const USER_KEY = 'User';
 @Injectable({

@@ -1,12 +1,49 @@
 .chair-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Create 5 columns */
   gap: 10px;
+} 
+
+
+@media only screen and (max-width: 667px) {
+  .chair-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .btn {
+    --bs-btn-padding-x: 0.5rem;
+    --bs-btn-padding-x: 0.5rem;
+    --bs-btn-font-size: 0.875rem;
+    --bs-btn-border-radius: var(--bs-border-radius-sm);
+  }
+  .chair {
+    background: green;
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+  }
+  .chair-user {
+    font-size: xx-small;
+  }
+  .booking{
+    margin-bottom: 100px;
+  }
+}
+
+@media only screen and (min-width: 667px) {
+  .chair-container {
+    grid-template-columns: repeat(10, 1fr);
+  }
+  .chair {
+    background: green;
+    width: 100px;
+    height: 100px;
+    margin: 6px;
+  }
+  .chair-user {
+    font-size: medium;
+  }
 }
 
 .chair {
-  width: 100px;
-  height: 100px;
   background-color: lightgray;
   display: flex;
   align-items: center;
@@ -27,3 +64,4 @@
 .chair:hover {
   background-color: lightblue;
 }
+

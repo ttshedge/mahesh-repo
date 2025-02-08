@@ -4,6 +4,7 @@ import sequelize from '../configs/database.config';
 import Seat from '../configs/models/seat.model';
 import Booking from '../configs/models/booking.model';
 import User from "../configs/models/user.model";
+import { where } from 'sequelize';
 
 const router = Router();
 // Utility function to check if the current date is the last 3 days of the month
@@ -24,6 +25,18 @@ router.get('/seats', async (req: Request, res: Response) => {
     res.json(allSeats);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch seats' });
+  }
+});
+
+router.get('/open-booking', async (req: Request, res: Response) => {
+  try {
+    // Mark the seat as booked (not available)
+    await Seat.update({isAvailable: true, userId: null},{where: { isAvailable: false }});
+
+    res.status(200).json({ message: 'Booking open successfully' });
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: 'Failed to open booking' });
   }
 });
 
